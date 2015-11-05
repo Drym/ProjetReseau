@@ -21,13 +21,13 @@ public class Server {
 
 			System.out.println("Connected");
 
-			ois = new ObjectInputStream(clientSocket.getInputStream());
+			//ois = new ObjectInputStream(clientSocket.getInputStream());
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
 
-			oos.writeObject("Vous etes connected");
+			oos.writeObject("Vous etes connecte");
 			oos.flush();
 
-			ois.close();
+			//ois.close();
 			oos.close();
 			serverSocket.close();
 			clientSocket.close();

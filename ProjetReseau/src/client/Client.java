@@ -18,13 +18,13 @@ public class Client {
 			System.out.println("Demande de connexion...");
 		    
 			ois = new ObjectInputStream(socket.getInputStream());
-		    oos = new ObjectOutputStream(socket.getOutputStream());
+		    //oos = new ObjectOutputStream(socket.getOutputStream());
 
 			String message = (String)ois.readObject();
 			System.out.println(message);
 
 			ois.close();
-			oos.close();
+			//oos.close();
 			socket.close();
 
 		} catch(Exception e) {
