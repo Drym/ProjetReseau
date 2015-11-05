@@ -1,5 +1,7 @@
 package protocol;
 
+import org.json.JSONObject;
+
 public class Lister extends Service {
 	private int limit;
 	private String startWith;
@@ -15,8 +17,11 @@ public class Lister extends Service {
 	}
 	
 	@Override
-	public String toJSON() {
-		// TODO Auto-generated method stub
-		return null;
+	public JSONObject toJSON() {
+		JSONObject json = new JSONObject();
+		json.append("limit", limit);
+		json.append("startWith", startWith);
+		
+		return json;
 	}
 }
