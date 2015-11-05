@@ -4,6 +4,8 @@ import java.net.ServerSocket;
 import java.io.*;
 import java.net.Socket;
 
+import protocol.Lister;
+
 
 public class Server {
 
@@ -24,7 +26,7 @@ public class Server {
 			//ois = new ObjectInputStream(clientSocket.getInputStream());
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
 
-			oos.writeObject("Vous etes connecte");
+			oos.writeObject(new Lister());
 			oos.flush();
 
 			//ois.close();

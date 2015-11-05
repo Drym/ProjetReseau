@@ -24,6 +24,7 @@ public class Ajouter extends Service {
 	@Override
 	public JSONObject toJSON() {
 		JSONObject json = new JSONObject();
+		json.append("name", serviceName);
 		json.append("name", name);
 		JSONArray jsonNicknames = new JSONArray(nicknames);
 		json.append("nicknames", jsonNicknames);

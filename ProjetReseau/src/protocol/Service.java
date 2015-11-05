@@ -1,7 +1,6 @@
 package protocol;
 
-//import json.JSONObject;
-import com.atlassian.clover.reporters.json.JSONObject;
+import org.json.JSONObject;
 
 public abstract class Service extends JSONObject {
 	protected String serviceName;
@@ -14,5 +13,5 @@ public abstract class Service extends JSONObject {
 		serviceName = sname;
 	}
 	
-	public abstract String toJSON();
+	public abstract JSONObject toJSON();
 }
