@@ -11,8 +11,15 @@ import protocol.Response;
 
 public abstract class Service implements Serializable{
 	private static final long serialVersionUID = 8674186373425255765L;
+	
+	private String serviceName;
 		
-	public Service() {
+	public Service(String sname) {
+		serviceName = sname;
+	}
+	
+	public String getServiceName(){
+		return serviceName;
 	}
 	
 	public abstract HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map) throws InvalidRequestException;

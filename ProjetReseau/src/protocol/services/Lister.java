@@ -15,11 +15,13 @@ public class Lister extends Service {
 	private String startWith;
 
 	public Lister() {
+		super("LIST");
 		limit = 0;
 		startWith = "";
 	}
 	
 	public Lister(int limit, String startWith) {
+		super("LIST");
 		this.limit = limit;
 		this.startWith = startWith;
 	}

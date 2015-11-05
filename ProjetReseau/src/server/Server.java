@@ -40,7 +40,7 @@ public class Server {
 					serverData = request.exec(serverData);
 					response = new Response(true, "OK", serverData);
 				} catch (InvalidRequestException e) {
-					String message = e.getRequestName() + " : " + e.getMessageError();
+					String message = request.getServiceName() + " : " + e.getMessageError();
 					response = new Response(false, message);
 				}
 				
