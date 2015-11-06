@@ -38,10 +38,11 @@ public class Server {
 				Response response;
 				try {
 					serverData = request.exec(serverData);
-					response = new Response(true, "OK", serverData);
+					response = request.createResponse(true, "OK", serverData);
 				} catch (InvalidRequestException e) {
 					String message = request.getServiceName() + " : " + e.getMessageError();
-					response = new Response(false, message);
+					response = request.createResponse(false, message, null);
+
 				}
 				
 				oos.writeObject(response);
