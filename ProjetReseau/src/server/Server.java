@@ -31,6 +31,7 @@ public class Server {
 			System.out.println("Msg:Serveur en ligne.");
 			ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
 			ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
+			//TODO Fermer le serveur au bon moment
 			for(int i = 1 ; i <= 10 ; i++){
 
 				Service request = (Service)ois.readObject();
@@ -46,7 +47,7 @@ public class Server {
 				}
 				
 				oos.writeObject(response);
-				System.out.println("Msg n°"+i+" :Envoi d'une réponse au client.");
+				System.out.println("Msg n°" + i + " :Envoi d'une réponse au client.");
 				oos.flush();
 			}
 

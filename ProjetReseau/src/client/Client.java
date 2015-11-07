@@ -102,7 +102,7 @@ public class Client {
 					System.out.println("Cette requete n'existe pas ! Help pour plus d'information");
 				}
 
-				//Fermuture ou non de la connexion
+				//Fermeture ou non de la connexion
 				System.out.println("Voulez-vous continuer ? (oui/non)");
 				read = scanner.nextLine();
 				if(read.equals("Non") || read.equals("non")) {
