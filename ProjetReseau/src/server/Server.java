@@ -31,8 +31,8 @@ public class Server {
 			System.out.println("Msg:Serveur en ligne.");
 			ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
 			ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
-			for(int i = 1 ; i <= 3 ; i++){
-				
+			for(int i = 1 ; i <= 10 ; i++){
+
 				Service request = (Service)ois.readObject();
 				System.out.println("Msg n°"+i+" :Réception d'un objet envoyé par le client.");
 				Response response;
