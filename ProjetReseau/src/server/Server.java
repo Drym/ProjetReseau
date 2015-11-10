@@ -47,6 +47,7 @@ public class Server {
 				}
 				
 				oos.writeObject(response);
+				oos.reset();
 				System.out.println("Msg n°" + i + " :Envoi d'une réponse au client.");
 				oos.flush();
 			}
