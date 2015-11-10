@@ -34,7 +34,6 @@ public class Server {
 			Service request = null;
 			//TODO Fermer le serveur au bon moment
 			for(int i = 1 ;; i++){
-				System.out.println(i);
 				
 				try{
 					request = (Service)ois.readObject();
