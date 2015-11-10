@@ -35,7 +35,7 @@ public class Client {
 
 			//Boucle tant que l'utilisateur veut continuer
 			while (continuer) {
-				System.out.println("Que voulez-vois faire ?");
+				System.out.println("Que voulez-vous faire ?");
 				read = scanner.nextLine();
 
 				//Requete ajouter
@@ -79,9 +79,9 @@ public class Client {
 
 					//Reponse
 					Response response = (Response) ois.readObject();
-					System.out.println("Msg3:Réception d'une réponse du serveur.");
+					System.out.println("Msg:Réception d'une réponse du serveur.");
 					if (response.getStatus()) {
-						System.out.println("Msg3:Affichage d'une partie des données reçues:");
+						System.out.println("Msg:Affichage d'une partie des données reçues:");
 						for (String string : response.getData().keySet()) {
 							System.out.println("	" + string);
 						}
@@ -95,6 +95,16 @@ public class Client {
 					System.out.println("Les differentes requetes sont :");
 					System.out.println("Ajouter");
 					System.out.println("Lister");
+					System.out.println("Disconnect");
+				}
+
+				//Fermeture ou non de la connexion
+				else if(read.equals("Disconnect") || read.equals("disconnect")) {
+					oos.close();
+					ois.close();
+					socket.close();
+					continuer = false;
+					System.out.println("Msg:Client déconnecté.");
 				}
 
 				//Mauvaise requete
@@ -102,15 +112,8 @@ public class Client {
 					System.out.println("Cette requete n'existe pas ! Help pour plus d'information");
 				}
 
-				//Fermeture ou non de la connexion
-				System.out.println("Voulez-vous continuer ? (oui/non)");
-				read = scanner.nextLine();
-				if(read.equals("Non") || read.equals("non")) {
-					oos.close();
-					ois.close();
-					socket.close();
-					System.out.println("Msg:Client déconnecté.");
-				}
+				System.out.println(" \n_______________\n");
+
 			}
 		}catch (IOException e) {
 			e.printStackTrace();
