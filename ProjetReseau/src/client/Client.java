@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -106,7 +107,7 @@ public class Client {
 					continuer = false;
 					System.out.println("Msg:Client déconnecté.");
 				}
-
+				
 				//Mauvaise requete
 				else {
 					System.out.println("Cette requete n'existe pas ! Help pour plus d'information");

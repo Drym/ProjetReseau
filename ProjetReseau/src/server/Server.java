@@ -34,9 +34,17 @@ public class Server {
 			Service request = null;
 			//TODO Fermer le serveur au bon moment
 			for(int i = 1 ;; i++){
-
-				request = (Service)ois.readObject();
-
+				System.out.println(i);
+				
+				try{
+					request = (Service)ois.readObject();
+				} catch(EOFException eof){
+					clientSocket = serverSocket.accept();
+					ois = new ObjectInputStream(clientSocket.getInputStream());
+					oos = new ObjectOutputStream(clientSocket.getOutputStream());
+					continue;
+				}
+				
 				System.out.println("Msg n°"+i+" :Réception d'un objet envoyé par le client.");
 				Response response;
 				try {
