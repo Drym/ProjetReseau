@@ -35,7 +35,7 @@ public class Client {
 
 			//Boucle tant que l'utilisateur veut continuer
 			while (continuer) {
-				System.out.println("Que voulez-vois faire ?");
+				System.out.println("Que voulez-vous faire ?");
 				read = scanner.nextLine();
 
 				//Requete ajouter
@@ -79,9 +79,9 @@ public class Client {
 
 					//Reponse
 					Response response = (Response) ois.readObject();
-					System.out.println("Msg3:Réception d'une réponse du serveur.");
+					System.out.println("Msg:Réception d'une réponse du serveur.");
 					if (response.getStatus()) {
-						System.out.println("Msg3:Affichage d'une partie des données reçues:");
+						System.out.println("Msg:Affichage d'une partie des données reçues:");
 						for (String string : response.getData().keySet()) {
 							System.out.println("	" + string);
 						}
