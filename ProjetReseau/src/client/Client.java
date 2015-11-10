@@ -5,9 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 import protocol.Response;
 import protocol.services.Ajouter;
@@ -82,8 +80,18 @@ public class Client {
 					System.out.println("Msg:Réception d'une réponse du serveur.");
 					if (response.getStatus()) {
 						System.out.println("Msg:Affichage d'une partie des données reçues:");
+
+						HashMap<String, Set<String>> map = response.getData();
+
 						for (String string : response.getData().keySet()) {
-							System.out.println("	" + string);
+							List<String> list = new ArrayList<>( map.get(string));
+							System.out.print("	" + string + " - ");
+
+							for(int i = 0; i < list.size(); i++) {
+								System.out.print(list.get(i) + "  ");
+							}
+							System.out.println("");
+
 						}
 					} else {
 						System.out.println(response.getMessage());
