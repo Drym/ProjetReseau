@@ -25,7 +25,7 @@ public class Client {
 		
 		System.out.println(" === CLIENT SIDE === ");
 		Scanner scanner = new Scanner(System.in);
-
+/*
 		try {
 			//Connexion
 			Socket socket = new Socket(hostName, portNumber);
@@ -117,13 +117,34 @@ public class Client {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		/*
+*/
+		
 		try {
 		    Socket socket = new Socket(hostName, portNumber);
 			System.out.println("Msg:Demande de connexion au serveur.");
 		    
 			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			
+			// LISTER
+			
+			oos.writeObject(new Lister());
+			System.out.println("Msg3:Envoi d'une requête LIST au serveur.");
+			oos.flush();
+			Response response = (Response)ois.readObject();
+			
+			System.out.println("Msg3:Réception d'une réponse du serveur.");
+			if(response.getStatus()){
+				System.out.println("Msg3:Affichage d'une partie des données reçues:");
+				for (String string : response.getData().keySet()) {
+					System.out.println("	"+string);
+				}
+			}else{
+				System.out.println(response.getMessage());
+			}
+			
+			// AJOUTER
+			
 			Set<String> nicknames = new HashSet<>();
 			nicknames.add("ThibThib");
 			nicknames.add("Oberyn");
@@ -133,8 +154,7 @@ public class Client {
 			System.out.println("Msg:Envoi d'un ajout de l'utilisateur Thibault au serveur.");
 			oos.flush();
 			
-			ois = new ObjectInputStream(socket.getInputStream());
-			Response response = (Response)ois.readObject();
+			response = (Response)ois.readObject();
 			System.out.println("Msg:Réception d'une réponse du serveur.");
 			if(response.getStatus()){
 				System.out.println("Msg:Utilisateur ajouté.");
@@ -142,7 +162,7 @@ public class Client {
 				System.out.println(response.getMessage());
 			}
 			
-			// Part 2
+			// AJOUTER
 			
 			oos.writeObject(new Ajouter("Thibault", nicknames));
 			System.out.println("Msg2:Envoi d'un ajout de l'utilisateur Thibault au serveur.");
@@ -156,7 +176,7 @@ public class Client {
 				System.out.println(response.getMessage());
 			}
 			
-			// Part 3
+			// LISTER
 			
 			oos.writeObject(new Lister());
 			System.out.println("Msg3:Envoi d'une requête LIST au serveur.");
@@ -184,7 +204,7 @@ public class Client {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-	*/
+	
 
 	}
 
