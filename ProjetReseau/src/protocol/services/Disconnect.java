@@ -6,10 +6,9 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class Disconnect extends Service {
+	private static final long serialVersionUID = 4431298312019946475L;
 
-    private static final long serialVersionUID = 42;
-
-    public Disconnect() {
+	public Disconnect() {
         super("DISCONNECT");
     }
 

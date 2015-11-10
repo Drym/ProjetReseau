@@ -31,10 +31,12 @@ public class Server {
 			System.out.println("Msg:Serveur en ligne.");
 			ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
 			ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
+			Service request = null;
 			//TODO Fermer le serveur au bon moment
-			for(int i = 1 ; i <= 10 ; i++){
+			for(int i = 1 ;; i++){
 
-				Service request = (Service)ois.readObject();
+				request = (Service)ois.readObject();
+
 				System.out.println("Msg n°"+i+" :Réception d'un objet envoyé par le client.");
 				Response response;
 				try {
@@ -52,12 +54,12 @@ public class Server {
 				oos.flush();
 			}
 
-			ois.close();
+			/*ois.close();
 			oos.close();
 			serverSocket.close();
 			clientSocket.close();
 			
-			System.out.println("Msg:Serveur stoppé.");
+			System.out.println("Msg:Serveur stoppé.");*/
 
 		} catch (IOException e) {
 			e.printStackTrace();
