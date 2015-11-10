@@ -45,7 +45,7 @@ public class Server {
 					response = request.createResponse(false, message, null);
 
 				}
-				
+
 				oos.writeObject(response);
 				oos.reset();
 				System.out.println("Msg n°" + i + " :Envoi d'une réponse au client.");
