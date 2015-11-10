@@ -95,6 +95,16 @@ public class Client {
 					System.out.println("Les differentes requetes sont :");
 					System.out.println("Ajouter");
 					System.out.println("Lister");
+					System.out.println("Disconnect");
+				}
+
+				//Fermeture ou non de la connexion
+				else if(read.equals("Disconnect") || read.equals("disconnect")) {
+					oos.close();
+					ois.close();
+					socket.close();
+					continuer = false;
+					System.out.println("Msg:Client déconnecté.");
 				}
 
 				//Mauvaise requete
@@ -102,15 +112,8 @@ public class Client {
 					System.out.println("Cette requete n'existe pas ! Help pour plus d'information");
 				}
 
-				//Fermeture ou non de la connexion
-				System.out.println("Voulez-vous continuer ? (oui/non)");
-				read = scanner.nextLine();
-				if(read.equals("Non") || read.equals("non")) {
-					oos.close();
-					ois.close();
-					socket.close();
-					System.out.println("Msg:Client déconnecté.");
-				}
+				System.out.println(" \n_______________\n");
+
 			}
 		}catch (IOException e) {
 			e.printStackTrace();
