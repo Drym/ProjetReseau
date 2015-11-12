@@ -32,7 +32,7 @@ public class Server {
 			ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
 			ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			Service request = null;
-			//TODO Fermer le serveur au bon moment
+
 			for(int i = 1 ;; i++){
 				
 				try{

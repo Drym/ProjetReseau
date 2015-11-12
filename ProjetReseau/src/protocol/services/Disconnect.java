@@ -5,9 +5,17 @@ import protocol.Response;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * Disconnect est une classe permetant au client de se déconnecter du serveur
+ */
 public class Disconnect extends Service {
 	private static final long serialVersionUID = 4431298312019946475L;
 
+    /**
+     * Constructeur de Disconnect
+     *
+     * Permet la déconnexion du client
+     */
 	public Disconnect() {
         super("DISCONNECT");
     }
