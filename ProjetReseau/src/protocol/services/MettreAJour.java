@@ -8,7 +8,7 @@ import protocol.InvalidRequestException;
 import protocol.Response;
 
 /**
- * MettreAJour est une classe permetant la mise à jour d'un nom ou d'un surnom sur le serveur
+ * MettreAJour est une classe permetant la mise Ã  jour d'un nom ou d'un surnom sur le serveur
  */
 public class MettreAJour extends Service {
     //TODO
@@ -21,7 +21,7 @@ public class MettreAJour extends Service {
     /**
      * Constructeur de MettreAJour
      *
-     * Permet la mise à jour d'un nom ou d'un surnom
+     * Permet la mise Ã  jour d'un nom ou d'un surnom
      */
     public MettreAJour() {
         super("UPDATE");
@@ -31,10 +31,10 @@ public class MettreAJour extends Service {
     /**
      * Constructeur de MettreAJour
      *
-     * Permet la mise à jour d'un nom ou d'un surnom
+     * Permet la mise Ã  jour d'un nom ou d'un surnom
      *
      * @param name
-     * 				Le nom permetant de trouver les surnoms à modifier
+     * 				Le nom permetant de trouver les surnoms Ã  modifier
      * @param nicknames
      *				Les nouveaux surnoms
      */
@@ -47,10 +47,10 @@ public class MettreAJour extends Service {
     /**
      * Constructeur de MettreAJour
      *
-     * Permet la mise à jour d'un nom ou d'un surnom
+     * Permet la mise Ã  jour d'un nom ou d'un surnom
      *
      * @param name
-     * 				Le nom à modifier
+     * 				Le nom Ã  modifier
      * @param newName
      *				Le nouveau nom
      */
@@ -63,10 +63,10 @@ public class MettreAJour extends Service {
     /**
      * Constructeur de MettreAJour
      *
-     * Permet la mise à jour d'un nom ou d'un surnom
+     * Permet la mise Ã  jour d'un nom ou d'un surnom
      *
      * @param name
-     * 				Le nom à modifier
+     * 				Le nom Ã  modifier
      * @param newName
      *				Le nouveau nom
      * @param nicknames
@@ -82,7 +82,7 @@ public class MettreAJour extends Service {
     @Override
     public HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map) throws InvalidRequestException {
         if(!map.containsKey(name)) throw new InvalidRequestException(
-                "Le nom "+name+" n'a pas pu être modifié car n'est pas présent sur le serveur.");
+                "Le nom "+name+" n'a pas pu Ãªtre modifiÃ© car n'est pas prÃ©sent sur le serveur.");
 
         //Pas de newName, donc modification des nicknames
         if(newName == null) {

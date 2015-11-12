@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
- * Disconnect est une classe permetant au client de se déconnecter du serveur
+ * Disconnect est une classe permetant au client de se dÃ©connecter du serveur
  */
 public class Disconnect extends Service {
 	private static final long serialVersionUID = 4431298312019946475L;
@@ -14,7 +14,7 @@ public class Disconnect extends Service {
     /**
      * Constructeur de Disconnect
      *
-     * Permet la déconnexion du client
+     * Permet la dÃ©connexion du client
      */
 	public Disconnect() {
         super("DISCONNECT");

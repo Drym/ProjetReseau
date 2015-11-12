@@ -8,7 +8,7 @@ import protocol.InvalidRequestException;
 import protocol.Response;
 
 /**
- * Service est une classe permetant la création des différents services
+ * Service est une classe permetant la crÃ©ation des diffÃ©rents services
  */
 public abstract class Service implements Serializable{
 	private static final long serialVersionUID = 8674186373425255765L;
@@ -18,7 +18,7 @@ public abstract class Service implements Serializable{
 	/**
 	 * Constructeur de Service
 	 *
-	 * Permet la création d'un service
+	 * Permet la crÃ©ation d'un service
 	 *
 	 * @param sname
 	 * 				Nom du service
@@ -37,27 +37,27 @@ public abstract class Service implements Serializable{
 	}
 
 	/**
-	 * Permet la modification de la map contenant les données
+	 * Permet la modification de la map contenant les donnÃ©es
 	 *
 	 * @param map
 	 *              map qui contient les informations sur les nom et surnom
-	 * @return la nouvelle map mise à jour
+	 * @return la nouvelle map mise Ã  jour
 	 * @throws InvalidRequestException
-	 *              Si le nom est ou n'est pas present dans la map suivant le service demandé
+	 *              Si le nom est ou n'est pas present dans la map suivant le service demandÃ©
 	 */
 	public abstract HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map) throws InvalidRequestException;
 
 	/**
-	 * Permet de générer la réponse qui sera envoyée au client
+	 * Permet de gÃ©nÃ©rer la rÃ©ponse qui sera envoyÃ©e au client
 	 *
 	 * @param status
-	 * 				Informe sur l'état de la requête
+	 * 				Informe sur l'Ã©tat de la requÃªte
 	 * @param message
-	 * 				Détail sur l'état de la requête
+	 * 				DÃ©tail sur l'Ã©tat de la requÃªte
 	 * @param map
-	 * 				Les données résultantes de l'éxécution de la requête
+	 * 				Les donnÃ©es rÃ©sultantes de l'Ã©xÃ©cution de la requÃªte
 	 *
-	 * @return la génération de la réponse à transmettre au client
+	 * @return la gÃ©nÃ©ration de la rÃ©ponse Ã  transmettre au client
 	 */
 	public abstract Response createResponse(boolean status, String message, HashMap<String, Set<String>> map);
 }
