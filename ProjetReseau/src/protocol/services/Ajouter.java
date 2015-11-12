@@ -7,17 +7,35 @@ import java.util.Set;
 import protocol.InvalidRequestException;
 import protocol.Response;
 
+/**
+ * Ajouter est une classe permetant d'ajouter un nom sur le serveur
+ */
 public class Ajouter extends Service {
 	private static final long serialVersionUID = -8413665337871880822L;
 	
 	private String name;
 	private Set<String> nicknames;
-	
+
+	/**
+	 * Constructeur d'Ajouter
+	 *
+	 * Permet l'ajout d'un sur le serveur
+	 */
 	public Ajouter() {
 		super("ADD");
 		nicknames = new HashSet<String>();
 	}
-	
+
+	/**
+	 * Constructeur d'Ajouter
+	 *
+	 * Permet l'ajout d'un sur le serveur
+	 *
+	 * @param name
+	 * 				Le nom à ajouter
+	 * @param nicknames
+	 *				Les surnoms à ajouter
+	 */
 	public Ajouter(String name, Set<String> nicknames) {
 		super("ADD");
 		this.name = name;
