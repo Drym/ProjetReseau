@@ -7,7 +7,7 @@ import protocol.InvalidRequestException;
 import protocol.Response;
 
 /**
- * Supprimer est une classe permetant de supprimer un nom stock� sur le serveur
+ * Supprimer est une classe permetant de supprimer un nom stocké sur le serveur
  */
 public class Supprimer extends Service {
 	private static final long serialVersionUID = -4489768322140026265L;
@@ -17,10 +17,10 @@ public class Supprimer extends Service {
     /**
      * Constructeur de Supprimer
      *
-     * Permet la suppression d'un nom stock� sur le serveur
+     * Permet la suppression d'un nom stocké sur le serveur
      *
      * @param name
-     *              Le nom � supprimer
+     *              Le nom à supprimer
      */
     public Supprimer(String name) {
         super("DELETE");

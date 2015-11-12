@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
- * Response est une classe permetant la cr�ation d'une r�ponse � transmettre au client
+ * Response est une classe permetant la création d'une réponse à transmettre au client
  */
 public class Response implements Serializable{
 	private static final long serialVersionUID = -1375764047129249512L;
@@ -17,12 +17,12 @@ public class Response implements Serializable{
 	/**
 	 * Constructeur de Response
 	 *
-	 * Permet la cr�ation d'un r�ponse
+	 * Permet la création d'un réponse
 	 *
 	 * @param status
-	 * 				Informe sur l'�tat de la requ�te
+	 * 				Informe sur l'état de la requête
 	 * @param message
-	 * 				D�tail sur l'�tat de la requ�te
+	 * 				Détail sur l'état de la requête
 	 */
 	public Response(boolean status, String message) {
 		this.status = status;
@@ -33,14 +33,14 @@ public class Response implements Serializable{
 	/**
 	 * Constructeur de Response
 	 *
-	 * Permet la cr�ation d'un r�ponse
+	 * Permet la création d'un réponse
 	 *
 	 * @param status
-	 * 				Informe sur l'�tat de la requ�te
+	 * 				Informe sur l'ï¿½tat de la requête
 	 * @param message
-	 *  			D�tail sur l'�tat de la requ�te
+	 *  			Détail sur l'ï¿½tat de la requête
 	 * @param data
-	 * 				Les donn�es r�sultantes de l'�x�cution de la requ�te
+	 * 				Les données résultantes de l'éxécution de la requête
 	 */
 	public Response(boolean status, String message, HashMap<String, Set<String>> data) {
 		this(status, message);
@@ -48,27 +48,27 @@ public class Response implements Serializable{
 	}
 
 	/**
-	 * Accesseur en lecture du status de la r�ponse
+	 * Accesseur en lecture du status de la réponse
 	 *
-	 * @return le status de la r�ponse
+	 * @return le status de la réponse
 	 */
 	public boolean getStatus(){
 		return status;
 	}
 
 	/**
-	 * Accesseur des donn�es de la r�ponse
+	 * Accesseur des données de la réponse
 	 *
-	 * @return une HashMap contenant les donn�es
+	 * @return une HashMap contenant les données
 	 */
 	public HashMap<String, Set<String>> getData(){
 		return data;
 	}
 
 	/**
-	 * Accesseur en lecture du message de la r�ponse
+	 * Accesseur en lecture du message de la réponse
 	 *
-	 * @return le message de la r�ponse
+	 * @return le message de la réponse
 	 */
 	public String getMessage(){
 		return message;
