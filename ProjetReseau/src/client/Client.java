@@ -33,7 +33,15 @@ public class Client {
 			System.out.println("Msg:Demande de connexion au serveur.");
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-
+			
+			Response r = (Response) ois.readObject();
+			System.out.println("Msg:Réception d'une réponse du serveur.");
+			if (r.getStatus()) {
+				System.out.println("Msg:Utilisateur  ajouté.");
+			} else {
+				System.out.println(r.getMessage());
+			}
+			
 			//Boucle tant que l'utilisateur veut continuer
 			while (continuer) {
 				System.out.println("Que voulez-vous faire ?");

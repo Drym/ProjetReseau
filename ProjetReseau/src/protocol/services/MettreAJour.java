@@ -8,20 +8,19 @@ import protocol.InvalidRequestException;
 import protocol.Response;
 
 /**
- * MettreAJour est une classe permetant la mise à jour d'un nom ou d'un surnom sur le serveur
+ * MettreAJour est une classe permetant la mise � jour d'un nom ou d'un surnom sur le serveur
  */
 public class MettreAJour extends Service {
-    //TODO
-    private static final long serialVersionUID = 41;
-
-    private String name;
+	private static final long serialVersionUID = -4554518145285427739L;
+	
+	private String name;
     private String newName = null;
     private Set<String> nicknames = null;
 
     /**
      * Constructeur de MettreAJour
      *
-     * Permet la mise à jour d'un nom ou d'un surnom
+     * Permet la mise � jour d'un nom ou d'un surnom
      */
     public MettreAJour() {
         super("UPDATE");
@@ -31,10 +30,10 @@ public class MettreAJour extends Service {
     /**
      * Constructeur de MettreAJour
      *
-     * Permet la mise à jour d'un nom ou d'un surnom
+     * Permet la mise � jour d'un nom ou d'un surnom
      *
      * @param name
-     * 				Le nom permetant de trouver les surnoms à modifier
+     * 				Le nom permetant de trouver les surnoms � modifier
      * @param nicknames
      *				Les nouveaux surnoms
      */
@@ -47,10 +46,10 @@ public class MettreAJour extends Service {
     /**
      * Constructeur de MettreAJour
      *
-     * Permet la mise à jour d'un nom ou d'un surnom
+     * Permet la mise � jour d'un nom ou d'un surnom
      *
      * @param name
-     * 				Le nom à modifier
+     * 				Le nom � modifier
      * @param newName
      *				Le nouveau nom
      */
@@ -63,10 +62,10 @@ public class MettreAJour extends Service {
     /**
      * Constructeur de MettreAJour
      *
-     * Permet la mise à jour d'un nom ou d'un surnom
+     * Permet la mise � jour d'un nom ou d'un surnom
      *
      * @param name
-     * 				Le nom à modifier
+     * 				Le nom � modifier
      * @param newName
      *				Le nouveau nom
      * @param nicknames
@@ -82,7 +81,7 @@ public class MettreAJour extends Service {
     @Override
     public HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map) throws InvalidRequestException {
         if(!map.containsKey(name)) throw new InvalidRequestException(
-                "Le nom "+name+" n'a pas pu être modifié car n'est pas présent sur le serveur.");
+                "Le nom "+name+" n'a pas pu �tre modifié car n'est pas présent sur le serveur.");
 
         //Pas de newName, donc modification des nicknames
         if(newName == null) {

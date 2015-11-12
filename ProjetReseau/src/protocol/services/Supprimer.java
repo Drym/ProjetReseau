@@ -7,21 +7,20 @@ import protocol.InvalidRequestException;
 import protocol.Response;
 
 /**
- * Supprimer est une classe permetant de supprimer un nom stocké sur le serveur
+ * Supprimer est une classe permetant de supprimer un nom stock� sur le serveur
  */
 public class Supprimer extends Service {
-    //TODO serialVersionUID et les accents dans l'exception de exec
-    private static final long serialVersionUID = 42;
-
-    private String name;
+	private static final long serialVersionUID = -4489768322140026265L;
+	
+	private String name;
 
     /**
      * Constructeur de Supprimer
      *
-     * Permet la suppression d'un nom stocké sur le serveur
+     * Permet la suppression d'un nom stock� sur le serveur
      *
      * @param name
-     *              Le nom à supprimer
+     *              Le nom � supprimer
      */
     public Supprimer(String name) {
         super("DELETE");
@@ -31,7 +30,7 @@ public class Supprimer extends Service {
     @Override
     public HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map) throws InvalidRequestException {
         if(!map.containsKey(name)) throw new InvalidRequestException(
-                "Le nom "+name+" n'a pas pu être supprimer car il n'est pas présent sur le serveur.");
+                "Le nom "+name+" n'a pas pu être supprimé car il n'est pas présent sur le serveur.");
 
         map.remove(name);
 

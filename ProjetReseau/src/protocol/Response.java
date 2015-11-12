@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
- * Response est une classe permetant la création d'une réponse à transmettre au client
+ * Response est une classe permetant la crï¿½ation d'une rï¿½ponse ï¿½ transmettre au client
  */
 public class Response implements Serializable{
 	private static final long serialVersionUID = -1375764047129249512L;
@@ -17,12 +17,12 @@ public class Response implements Serializable{
 	/**
 	 * Constructeur de Response
 	 *
-	 * Permet la création d'un réponse
+	 * Permet la crï¿½ation d'un rï¿½ponse
 	 *
 	 * @param status
-	 * 				Informe sur l'état de la requête
+	 * 				Informe sur l'ï¿½tat de la requï¿½te
 	 * @param message
-	 * 				Détail sur l'état de la requête
+	 * 				Dï¿½tail sur l'ï¿½tat de la requï¿½te
 	 */
 	public Response(boolean status, String message) {
 		this.status = status;
@@ -33,14 +33,14 @@ public class Response implements Serializable{
 	/**
 	 * Constructeur de Response
 	 *
-	 * Permet la création d'un réponse
+	 * Permet la crï¿½ation d'un rï¿½ponse
 	 *
 	 * @param status
-	 * 				Informe sur l'état de la requête
+	 * 				Informe sur l'ï¿½tat de la requï¿½te
 	 * @param message
-	 *  			Détail sur l'état de la requête
+	 *  			Dï¿½tail sur l'ï¿½tat de la requï¿½te
 	 * @param data
-	 * 				Les données résultantes de l'éxécution de la requête
+	 * 				Les donnï¿½es rï¿½sultantes de l'ï¿½xï¿½cution de la requï¿½te
 	 */
 	public Response(boolean status, String message, HashMap<String, Set<String>> data) {
 		this(status, message);
@@ -48,27 +48,27 @@ public class Response implements Serializable{
 	}
 
 	/**
-	 * Accesseur en lecture du status de la réponse
+	 * Accesseur en lecture du status de la rï¿½ponse
 	 *
-	 * @return le status de la réponse
+	 * @return le status de la rï¿½ponse
 	 */
 	public boolean getStatus(){
 		return status;
 	}
 
 	/**
-	 * Accesseur des données de la réponse
+	 * Accesseur des donnï¿½es de la rï¿½ponse
 	 *
-	 * @return une HashMap contenant les données
+	 * @return une HashMap contenant les donnï¿½es
 	 */
 	public HashMap<String, Set<String>> getData(){
 		return data;
 	}
 
 	/**
-	 * Accesseur en lecture du message de la réponse
+	 * Accesseur en lecture du message de la rï¿½ponse
 	 *
-	 * @return le message de la réponse
+	 * @return le message de la rï¿½ponse
 	 */
 	public String getMessage(){
 		return message;
