@@ -32,27 +32,28 @@ public class Server {
 			ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
 			ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			Service request = null;
-			//TODO Fermer le serveur au bon moment
+
 			for(int i = 1 ;; i++){
 				
+				Response response = null;
 				try{
-					request = (Service)ois.readObject();
+					request = (Service)ois.readObject();				
+					System.out.println("Msg n°"+i+" :Réception d'un objet envoyé par le client.");
+					serverData = request.exec(serverData);
+					response = request.createResponse(true, "OK", serverData);
+					
 				} catch(EOFException eof){
 					clientSocket = serverSocket.accept();
 					ois = new ObjectInputStream(clientSocket.getInputStream());
 					oos = new ObjectOutputStream(clientSocket.getOutputStream());
 					continue;
-				}
-				
-				System.out.println("Msg n°"+i+" :Réception d'un objet envoyé par le client.");
-				Response response;
-				try {
-					serverData = request.exec(serverData);
-					response = request.createResponse(true, "OK", serverData);
+					
 				} catch (InvalidRequestException e) {
 					String message = request.getServiceName() + " : " + e.getMessageError();
 					response = request.createResponse(false, message, null);
-
+					
+				} catch(ClassCastException cce) {
+					response = new Response(false, "ERREUR : requête non conforme au protocole.");
 				}
 
 				oos.writeObject(response);

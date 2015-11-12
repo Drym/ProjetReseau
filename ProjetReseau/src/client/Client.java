@@ -11,6 +11,8 @@ import java.util.*;
 import protocol.Response;
 import protocol.services.Ajouter;
 import protocol.services.Lister;
+import protocol.services.MettreAJour;
+import protocol.services.Supprimer;
 
 public class Client {
 
@@ -31,7 +33,15 @@ public class Client {
 			System.out.println("Msg:Demande de connexion au serveur.");
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-
+			
+			Response r = (Response) ois.readObject();
+			System.out.println("Msg:Réception d'une réponse du serveur.");
+			if (r.getStatus()) {
+				System.out.println("Msg:Utilisateur  ajouté.");
+			} else {
+				System.out.println(r.getMessage());
+			}
+			
 			//Boucle tant que l'utilisateur veut continuer
 			while (continuer) {
 				System.out.println("Que voulez-vous faire ?");
@@ -40,7 +50,7 @@ public class Client {
 				//Requete ajouter
 				if (read.equals("Ajouter") || read.equals("ajouter")) {
 
-					System.out.println("Entrez le nom");
+					System.out.println("Entrez le nom à ajouter");
 					read = scanner.nextLine();
 					String nom = read;
 
@@ -99,11 +109,102 @@ public class Client {
 					}
 				}
 
+				//Requete supprimer
+				else if (read.equals("Supprimer") || read.equals("supprimer")) {
+
+					System.out.println("Entrez le nom à supprimer");
+					read = scanner.nextLine();
+					String nom = read;
+
+					//Envois de la requete
+					oos.writeObject(new Supprimer(nom));
+					System.out.println("Msg:Envoi d'une suppression de l'utilisateur " + nom + " au serveur.");
+					oos.flush();
+
+					//Reponse
+					Response response = (Response) ois.readObject();
+					System.out.println("Msg:Réception d'une réponse du serveur.");
+					if (response.getStatus()) {
+						System.out.println("Msg:Utilisateur " + nom + " supprimé.");
+					} else {
+						System.out.println(response.getMessage());
+					}
+				}
+
+				//Requete ajouter
+				else if (read.equals("Modifier") || read.equals("modifier")) {
+
+					System.out.println("Entrez le nom à modifier");
+					read = scanner.nextLine();
+					String nom = read;
+
+					System.out.println("Voulez-vous faire ? (1/2/3)");
+					System.out.println("1. Modifier le nom");
+					System.out.println("2. Modifier le surnom");
+					System.out.println("3. Modifier le nom et le surnom");
+					read = scanner.nextLine();
+
+					if (read.equals("1")) {
+						System.out.println("Entrez le nouveau nom");
+						read = scanner.nextLine();
+						String newNom = read;
+
+						//ecriture de la requete
+						oos.writeObject(new MettreAJour(nom, newNom));
+					}
+					else if (read.equals("2")) {
+						System.out.println("Entrez le/les nouveau(x) surnom(s) (! pour arreter)");
+						Set<String> nicknames = new HashSet<>();
+
+						while (!(read.equals("!"))) {
+							read = scanner.nextLine();
+							if (!read.equals("!"))
+								nicknames.add(read);
+						}
+
+						//ecriture de la requete
+						oos.writeObject(new MettreAJour(nom, nicknames));
+					}
+
+					else {
+						System.out.println("Entrez le nouveau nom");
+						read = scanner.nextLine();
+						String newNom = read;
+
+						System.out.println("Entrez le/les nouveau(x) surnom(s) (! pour arreter)");
+						Set<String> nicknames = new HashSet<>();
+
+						while (!(read.equals("!"))) {
+							read = scanner.nextLine();
+							if (!read.equals("!"))
+								nicknames.add(read);
+						}
+
+						//ecriture de la requete
+						oos.writeObject(new MettreAJour(nom, newNom, nicknames));
+					}
+
+					//Envois de la requete
+					System.out.println("Msg:Envoi d'une modification de l'utilisateur " + nom + " au serveur.");
+					oos.flush();
+
+					//Reponse
+					Response response = (Response) ois.readObject();
+					System.out.println("Msg:Réception d'une réponse du serveur.");
+					if (response.getStatus()) {
+						System.out.println("Msg:Utilisateur " + nom + " modifié.");
+					} else {
+						System.out.println(response.getMessage());
+					}
+				}
+
 				//Affiche l'aide
 				else if (read.equals("Help") || read.equals("help")) {
 					System.out.println("Les differentes requetes sont :");
 					System.out.println("Ajouter");
 					System.out.println("Lister");
+					System.out.println("Supprimer");
+					System.out.println("Modifier");
 					System.out.println("Disconnect");
 				}
 
