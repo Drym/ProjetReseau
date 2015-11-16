@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
- * Response est une classe permetant la création d'une réponse à transmettre au client
+ * Response est une classe permettant la création d'une réponse à transmettre au client
  */
 public class Response implements Serializable{
 	private static final long serialVersionUID = -1375764047129249512L;
