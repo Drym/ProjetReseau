@@ -5,7 +5,11 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
- * Response est une classe permettant la création d'une réponse à transmettre au client
+ * Response est une classe contenant la réponse du serveur. Elle est constituée : 
+ * - d'un booléen status indiquant si la requête a pu être effectuée ou non ; 
+ * - d'un String message contenant un éventuel message d'erreur ;
+ * - data, la donnée retournée par le serveur de type HashMap<String, Set<String>>
+ * Chacun de ces attributs dispose d'un accesseur.
  */
 public class Response implements Serializable{
 	private static final long serialVersionUID = -1375764047129249512L;
@@ -48,7 +52,7 @@ public class Response implements Serializable{
 	}
 
 	/**
-	 * Accesseur en lecture du status de la réponse
+	 * Accesseur du status de la réponse
 	 *
 	 * @return le status de la réponse
 	 */

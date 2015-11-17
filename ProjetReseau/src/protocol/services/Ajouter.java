@@ -8,7 +8,7 @@ import protocol.InvalidRequestException;
 import protocol.Response;
 
 /**
- * Ajouter est une classe permetant d'ajouter un nom sur le serveur
+ * Ajouter est une classe qui hérite de Service et permettant d'ajouter un nom sur le serveur
  */
 public class Ajouter extends Service {
 	private static final long serialVersionUID = -8413665337871880822L;

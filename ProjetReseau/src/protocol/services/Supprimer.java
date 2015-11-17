@@ -7,7 +7,7 @@ import protocol.InvalidRequestException;
 import protocol.Response;
 
 /**
- * Supprimer est une classe permetant de supprimer un nom stocké sur le serveur
+ * Supprimer est une classe qui hérite de Service et permettant de supprimer un nom stocké sur le serveur
  */
 public class Supprimer extends Service {
 	private static final long serialVersionUID = -4489768322140026265L;

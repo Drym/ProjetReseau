@@ -7,7 +7,7 @@ import protocol.InvalidRequestException;
 import protocol.Response;
 
 /**
- * Lister est une classe permetant d'obtenir la liste des noms et surnoms présent sur le serveur
+ * Lister est une classe qui hérite de Service et permettant d'obtenir la liste des noms et surnoms présent sur le serveur
  */
 public class Lister extends Service {
 	private static final long serialVersionUID = 3350070951937150357L;

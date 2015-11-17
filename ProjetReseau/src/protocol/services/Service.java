@@ -8,7 +8,10 @@ import protocol.InvalidRequestException;
 import protocol.Response;
 
 /**
- * Service est une classe permetant la création des différents services
+ * Service est une classe permettant la création des différents services. Cette classe est abstraite,
+ * par conséquent pour utiliser un service il est nécessaire d'instancier l'une des classes filles
+ * correspondant aus service souhaité. Cette classe est ensuite utilisée côté serveur pour exécuter
+ * la requête et pour générer la réponse à envoyer au client.
  */
 public abstract class Service implements Serializable{
 	private static final long serialVersionUID = 8674186373425255765L;
@@ -37,7 +40,7 @@ public abstract class Service implements Serializable{
 	}
 
 	/**
-	 * Permet la modification de la map contenant les données
+	 * Permet la modification de la map contenant les données (uniquement côté serveur)
 	 *
 	 * @param map
 	 *              map qui contient les informations sur les nom et surnom
@@ -48,7 +51,7 @@ public abstract class Service implements Serializable{
 	public abstract HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map) throws InvalidRequestException;
 
 	/**
-	 * Permet de générer la réponse qui sera envoyée au client
+	 * Permet de générer la réponse qui sera envoyée au client (uniquement côté serveur)
 	 *
 	 * @param status
 	 * 				Informe sur l'état de la requête

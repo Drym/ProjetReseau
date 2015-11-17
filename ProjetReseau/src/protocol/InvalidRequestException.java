@@ -1,7 +1,7 @@
 package protocol;
 
 /**
- * InvalidRequestException est une classe permetant de g�rer les Exception
+ * InvalidRequestException est une classe permetant de gérer les exceptions (côté serveur).
  */
 public class InvalidRequestException extends Exception {
 	private String messageError;
