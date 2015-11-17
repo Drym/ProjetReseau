@@ -54,6 +54,8 @@ public class Server {
 					
 				} catch(ClassCastException cce) {
 					response = new Response(false, "ERREUR : requête non conforme au protocole.");
+				} catch(NotSerializableException nse){
+					response = new Response(false, "Bande de débiles");
 				}
 
 				oos.writeObject(response);
