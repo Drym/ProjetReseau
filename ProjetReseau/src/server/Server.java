@@ -55,7 +55,9 @@ public class Server {
 				} catch(ClassCastException cce) {
 					response = new Response(false, "ERREUR : requête non conforme au protocole.");
 				} catch(NotSerializableException nse){
-					response = new Response(false, "Bande de débiles");
+					response = new Response(false, "Objet non sérializable.");
+				} catch(ClassNotFoundException cnfe){
+					response = new Response(false, "Classe non trouvée.");					
 				}
 
 				oos.writeObject(response);
@@ -72,8 +74,6 @@ public class Server {
 			System.out.println("Msg:Serveur stoppé.");*/
 
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
