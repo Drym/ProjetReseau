@@ -90,6 +90,9 @@ public class MettreAJour extends Service {
 		// Les deux ou juste les surnoms
 		else {
 			if(nicknames.isEmpty()) throw new InvalidRequestException("Veuiller entrer une liste de surnoms non vide.");
+			
+			if(nicknames.contains("")) throw new InvalidRequestException("Veuiller entrer des surnoms non vides.");
+			
 			map.remove(name);
 			
 			for (String key : map.keySet()) {
