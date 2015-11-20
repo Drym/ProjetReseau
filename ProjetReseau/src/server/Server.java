@@ -58,6 +58,8 @@ public class Server {
 					response = new Response(false, "Objet non sérializable.");
 				} catch(ClassNotFoundException cnfe){
 					response = new Response(false, "Classe non trouvée.");					
+				} catch (IOException ioe) {
+					continue;
 				}
 
 				oos.writeObject(response);

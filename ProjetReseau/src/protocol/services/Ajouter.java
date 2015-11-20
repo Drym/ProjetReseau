@@ -47,6 +47,14 @@ public class Ajouter extends Service {
 		if(map.containsKey(name)) throw new InvalidRequestException(
 				"Le nom "+name+" n'a pas pu être ajouté car déjà présent sur le serveur.");
 		
+		for (String key : map.keySet()) {
+			Set<String> tmp = map.get(key);
+			for (String nname : tmp) {
+				if(nicknames.contains(nname)) throw new InvalidRequestException(
+						"Le nom " + name + " n'a pas pu être ajouté car le surnom "+nname+" est déjà présent sur le serveur.");
+			}
+		}
+		
 		map.put(name, nicknames);
 		
 		return map;
