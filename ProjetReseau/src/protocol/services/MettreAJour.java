@@ -22,16 +22,6 @@ public class MettreAJour extends Service {
 	 * Constructeur de MettreAJour
 	 *
 	 * Permet la mise à jour d'un nom ou d'un surnom
-	 */
-	public MettreAJour() {
-		super("UPDATE");
-		nicknames = new HashSet<String>();
-	}
-
-	/**
-	 * Constructeur de MettreAJour
-	 *
-	 * Permet la mise à jour d'un nom ou d'un surnom
 	 *
 	 * @param name
 	 *            Le nom permetant de trouver les surnoms à modifier
@@ -41,6 +31,7 @@ public class MettreAJour extends Service {
 	public MettreAJour(String name, Set<String> nicknames) {
 		super("UPDATE");
 		this.name = name;
+		this.newName = name;
 		this.nicknames = nicknames;
 	}
 
@@ -88,13 +79,8 @@ public class MettreAJour extends Service {
 							+ name
 							+ " n'a pas pu être modifié car n'est pas présent sur le serveur.");
 
-		// Pas de newName, donc modification des nicknames
-		if (newName == null) {
-			map.remove(name);
-			map.put(name, nicknames);
-		}
 		// Pas de nicknames, donc modification du nom
-		else if (nicknames == null) {
+		if (nicknames == null) {
 			nicknames = map.get(name);
 			map.remove(name);
 			map.put(newName, nicknames);
@@ -102,6 +88,15 @@ public class MettreAJour extends Service {
 		// Les deux
 		else {
 			map.remove(name);
+			
+			for (String key : map.keySet()) {
+				Set<String> tmp = map.get(key);
+				for (String nname : tmp) {
+					if(nicknames.contains(nname)) throw new InvalidRequestException(
+							"Le nom " + name + " n'a pas pu être ajouté car le surnom "+nname+" est déjà présent sur le serveur.");
+				}
+			}
+			
 			map.put(newName, nicknames);
 		}
 

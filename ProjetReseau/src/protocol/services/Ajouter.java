@@ -20,16 +20,6 @@ public class Ajouter extends Service {
 	 * Constructeur d'Ajouter
 	 *
 	 * Permet l'ajout d'un sur le serveur
-	 */
-	public Ajouter() {
-		super("ADD");
-		nicknames = new HashSet<String>();
-	}
-
-	/**
-	 * Constructeur d'Ajouter
-	 *
-	 * Permet l'ajout d'un sur le serveur
 	 *
 	 * @param name
 	 * 				Le nom à ajouter
