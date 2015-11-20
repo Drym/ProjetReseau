@@ -73,6 +73,8 @@ public class MettreAJour extends Service {
 	@Override
 	public HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map)
 			throws InvalidRequestException {
+		if(newName == null || newName.equals("")) throw new InvalidRequestException("Veuillez entrer un nouveau nom non nul.");
+		
 		if (!map.containsKey(name))
 			throw new InvalidRequestException(
 					"Le nom "
@@ -85,8 +87,9 @@ public class MettreAJour extends Service {
 			map.remove(name);
 			map.put(newName, nicknames);
 		}
-		// Les deux
+		// Les deux ou juste les surnoms
 		else {
+			if(nicknames.isEmpty()) throw new InvalidRequestException("Veuiller entrer une liste de surnoms non vide.");
 			map.remove(name);
 			
 			for (String key : map.keySet()) {

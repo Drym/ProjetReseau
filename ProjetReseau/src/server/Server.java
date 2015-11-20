@@ -59,6 +59,11 @@ public class Server {
 				} catch(ClassNotFoundException cnfe){
 					response = new Response(false, "Classe non trouvée.");					
 				} catch (IOException ioe) {
+					System.out.println("Déconnexion inattendue du client !");
+					i = 1;
+					clientSocket = serverSocket.accept();
+					ois = new ObjectInputStream(clientSocket.getInputStream());
+					oos = new ObjectOutputStream(clientSocket.getOutputStream());
 					continue;
 				}
 

@@ -34,6 +34,8 @@ public class Ajouter extends Service {
 
 	@Override
 	public HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map) throws InvalidRequestException {
+		if(name == null || name.equals("")) throw new InvalidRequestException("Veuillez entrer un nom à ajouter non nul.");
+		
 		if(map.containsKey(name)) throw new InvalidRequestException(
 				"Le nom "+name+" n'a pas pu être ajouté car déjà présent sur le serveur.");
 		
