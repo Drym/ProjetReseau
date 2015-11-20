@@ -93,16 +93,17 @@ public class MettreAJour extends Service {
 			
 			if(nicknames.contains("")) throw new InvalidRequestException("Veuiller entrer des surnoms non vides.");
 			
-			map.remove(name);
-			
 			for (String key : map.keySet()) {
 				Set<String> tmp = map.get(key);
-				for (String nname : tmp) {
-					if(nicknames.contains(nname)) throw new InvalidRequestException(
-							"Le nom " + name + " n'a pas pu être ajouté car le surnom "+nname+" est déjà présent sur le serveur.");
+				if(!key.equals(name)){
+					for (String nname : tmp) {
+						if(nicknames.contains(nname)) throw new InvalidRequestException(
+								"Le nom " + name + " n'a pas pu être ajouté car le surnom "+nname+" est déjà présent sur le serveur.");
+					}
 				}
 			}
 			
+			map.remove(name);
 			map.put(newName, nicknames);
 		}
 
