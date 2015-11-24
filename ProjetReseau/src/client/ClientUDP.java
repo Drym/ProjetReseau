@@ -8,10 +8,7 @@ import java.net.Socket;
 import java.util.*;
 
 import protocol.Response;
-import protocol.services.Ajouter;
-import protocol.services.Lister;
-import protocol.services.MettreAJour;
-import protocol.services.Supprimer;
+import protocol.services.*;
 
 public class ClientUDP {
 
@@ -37,14 +34,13 @@ public class ClientUDP {
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(outputStream);
 			
-			//Envois de la quete
+			//Envois de la quete 1
 			oos.writeObject(new Lister());
 			byte[] data = outputStream.toByteArray();
-			
+
 			System.out.println("Msg:Envoi d'une requête LIST au serveur.");
 			sendPacket = new DatagramPacket(data, data.length, IPAddress, portNumber);
 			socket.send(sendPacket);
-			//oos.flush();
 
 			//Réception
 			byte[] incomingData = new byte[1024];
@@ -77,10 +73,36 @@ public class ClientUDP {
 			} else {
 				System.out.println(response.getMessage());
 			}
-			
-			
-			
-			
+
+
+
+			//Envois de la quete 2
+			oos.writeObject(new Disconnect());
+
+			System.out.println("Msg:Envoi d'une requête DISCONNECT au serveur.");
+			sendPacket = new DatagramPacket(data, data.length, IPAddress, portNumber);
+			socket.send(sendPacket);
+
+			//Réception
+			socket.receive(incomingPacket);
+			incData = incomingPacket.getData();
+			in = new ByteArrayInputStream(incData);
+			ois = new ObjectInputStream(in);
+
+			//Reponse
+			response = (Response) ois.readObject();
+			System.out.println("Msg:Réception d'une réponse du serveur.");
+
+			if (response.getStatus()) {
+				System.out.println("Msg:Déconnecté");
+			} else {
+				System.out.println(response.getMessage());
+			}
+
+			oos.close();
+			ois.close();
+			socket.close();
+
 /*
 			//Socket socket = new Socket(hostName, portNumber);
 			System.out.println("Msg:Demande de connexion au serveur.");
