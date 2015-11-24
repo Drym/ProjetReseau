@@ -8,7 +8,7 @@ import java.util.Set;
  * Response est une classe contenant la réponse du serveur. Elle est constituée : 
  * - d'un booléen status indiquant si la requête a pu être effectuée ou non ; 
  * - d'un String message contenant un éventuel message d'erreur ;
- * - data, la donnée retournée par le serveur de type HashMap<String, Set<String>>
+ * - de data, la donnée retournée par le serveur de type HashMap<String, Set<String>>
  * Chacun de ces attributs dispose d'un accesseur.
  */
 public class Response implements Serializable{
@@ -40,9 +40,9 @@ public class Response implements Serializable{
 	 * Permet la création d'un réponse
 	 *
 	 * @param status
-	 * 				Informe sur l'ï¿½tat de la requête
+	 * 				Informe sur l'état de la requête
 	 * @param message
-	 *  			Détail sur l'ï¿½tat de la requête
+	 *  			Détail sur l'état de la requête
 	 * @param data
 	 * 				Les données résultantes de l'éxécution de la requête
 	 */
