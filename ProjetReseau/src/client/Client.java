@@ -38,9 +38,10 @@ public class Client {
 			while (continuer) {
 				System.out.println("Que voulez-vous faire ?");
 				read = scanner.nextLine();
+				read = read.toLowerCase();
 
 				//Requete ajouter
-				if (read.equals("Ajouter") || read.equals("ajouter")) {
+				if (read.equals("ajouter")) {
 
 					System.out.println("Entrez le nom à ajouter");
 					read = scanner.nextLine();
@@ -71,7 +72,7 @@ public class Client {
 				}
 
 				//Requete Lister
-				else if (read.equals("Lister") || read.equals("lister")) {
+				else if (read.equals("lister")) {
 
 					//Envois de la quete
 					oos.writeObject(new Lister());
@@ -102,7 +103,7 @@ public class Client {
 				}
 
 				//Requete supprimer
-				else if (read.equals("Supprimer") || read.equals("supprimer")) {
+				else if (read.equals("supprimer")) {
 
 					System.out.println("Entrez le nom à supprimer");
 					read = scanner.nextLine();
@@ -124,7 +125,7 @@ public class Client {
 				}
 
 				//Requete ajouter
-				else if (read.equals("Modifier") || read.equals("modifier")) {
+				else if (read.equals("modifier")) {
 
 					System.out.println("Entrez le nom à modifier");
 					read = scanner.nextLine();
@@ -191,7 +192,7 @@ public class Client {
 				}
 
 				//Affiche l'aide
-				else if (read.equals("Help") || read.equals("help")) {
+				else if (read.equals("help")) {
 					System.out.println("Les differentes requetes sont :");
 					System.out.println("Ajouter");
 					System.out.println("Lister");
