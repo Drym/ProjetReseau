@@ -74,6 +74,14 @@ public class ClientUDP {
 				System.out.println(response.getMessage());
 			}
 
+			socket.close();
+			oos.close();
+			ois.close();
+			socket = new DatagramSocket();
+
+			outputStream = new ByteArrayOutputStream();
+			oos = new ObjectOutputStream(outputStream);
+
 			//Envois de la quete 2
 			oos.writeObject(new Supprimer("Name1"));
 			data = outputStream.toByteArray();
@@ -99,6 +107,14 @@ public class ClientUDP {
 			} else {
 				System.out.println(response.getMessage());
 			}
+
+			socket.close();
+			oos.close();
+			ois.close();
+
+			socket = new DatagramSocket();
+			outputStream = new ByteArrayOutputStream();
+			oos = new ObjectOutputStream(outputStream);
 
 			//Envois de la quete 3
 			oos.writeObject(new Lister());
