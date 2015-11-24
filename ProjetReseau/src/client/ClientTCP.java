@@ -9,10 +9,7 @@ import java.util.HashMap;
 import java.util.*;
 
 import protocol.Response;
-import protocol.services.Ajouter;
-import protocol.services.Lister;
-import protocol.services.MettreAJour;
-import protocol.services.Supprimer;
+import protocol.services.*;
 
 public class ClientTCP {
 
@@ -203,6 +200,22 @@ public class ClientTCP {
 
 				//Fermeture ou non de la connexion
 				else if(read.equals("Disconnect") || read.equals("disconnect")) {
+
+					//Envois de la requete
+					oos.writeObject(new Disconnect());
+					System.out.println("Msg:Envoi d'une requête DISCONNECT au serveur.");
+					oos.flush();
+
+					//Reponse
+					Response response = (Response) ois.readObject();
+					System.out.println("Msg:Réception d'une réponse du serveur.");
+
+					if (response.getStatus()) {
+						System.out.println("Msg:Déconnecté");
+					} else {
+						System.out.println(response.getMessage());
+					}
+
 					oos.close();
 					ois.close();
 					socket.close();
