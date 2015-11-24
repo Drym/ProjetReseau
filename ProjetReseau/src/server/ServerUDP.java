@@ -10,9 +10,7 @@ import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import protocol.InvalidRequestException;
 import protocol.Response;
@@ -50,6 +48,17 @@ public class ServerUDP {
 					request = (Service)ois.readObject();				
 					System.out.println("Msg n°"+i+" :Réception d'un objet envoyé par le client.");
 					serverData = request.exec(serverData);
+
+					for (String string : serverData.keySet()) {
+						List<String> list = new ArrayList<>( serverData.get(string));
+						System.out.print("	" + string + " - ");
+
+						for(int i2 = 0; i2 < list.size(); i2++) {
+							System.out.print(list.get(i2) + "  ");
+						}
+						System.out.println("");
+					}
+
 					response = request.createResponse(true, "OK", serverData);
 					
 				} catch(EOFException eof){
