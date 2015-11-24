@@ -14,7 +14,7 @@ import protocol.services.Lister;
 import protocol.services.MettreAJour;
 import protocol.services.Supprimer;
 
-public class Client {
+public class ClientTCP {
 
 	public static void main(String[] args) {
 		String hostName = "localhost";

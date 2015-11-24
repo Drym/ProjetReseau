@@ -12,7 +12,7 @@ import protocol.Response;
 import protocol.services.Service;
 
 
-public class Server {
+public class ServerTCP {
 
 	public static void main(String[] args) {
 
