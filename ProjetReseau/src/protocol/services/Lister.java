@@ -1,6 +1,6 @@
 package protocol.services;
 
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Set;
 
 import protocol.InvalidRequestException;
@@ -45,7 +45,7 @@ public class Lister extends Service {
 	}
 
 	@Override
-	public HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map)
+	public Hashtable<String, Set<String>> exec(Hashtable<String, Set<String>> map)
 			throws InvalidRequestException {
 		// Pas de modification des données du serveur
 		return map;
@@ -53,7 +53,7 @@ public class Lister extends Service {
 
 	@Override
 	public Response createResponse(boolean status, String message,
-			HashMap<String, Set<String>> map) {
+			Hashtable<String, Set<String>> map) {
 		// TODO : Pour l'instant limit et startWith sont ignorés
 		return new Response(status, message, map);
 	}

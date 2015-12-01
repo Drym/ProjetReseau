@@ -2,6 +2,7 @@ package protocol.services;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Set;
 
 import protocol.InvalidRequestException;
@@ -48,7 +49,7 @@ public abstract class Service implements Serializable{
 	 * @throws InvalidRequestException
 	 *              Si le nom est ou n'est pas present dans la map suivant le service demandé
 	 */
-	public abstract HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map) throws InvalidRequestException;
+	public abstract Hashtable<String, Set<String>> exec(Hashtable<String, Set<String>> map) throws InvalidRequestException;
 
 	/**
 	 * Permet de générer la réponse qui sera envoyée au client (uniquement côté serveur)
@@ -62,5 +63,5 @@ public abstract class Service implements Serializable{
 	 *
 	 * @return la génération de la réponse à transmettre au client
 	 */
-	public abstract Response createResponse(boolean status, String message, HashMap<String, Set<String>> map);
+	public abstract Response createResponse(boolean status, String message, Hashtable<String, Set<String>> map);
 }

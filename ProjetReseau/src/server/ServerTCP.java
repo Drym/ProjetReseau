@@ -5,6 +5,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 
 import protocol.InvalidRequestException;
@@ -16,7 +17,7 @@ public class ServerTCP {
 
 	public static void main(String[] args) {
 
-		HashMap<String, Set<String>> serverData = initializeServerData();
+		Hashtable<String, Set<String>> serverData = initializeServerData();
 		
 		ServerSocket serverSocket;
 		Socket clientSocket;
@@ -92,8 +93,8 @@ public class ServerTCP {
 		}
 	}
 	
-	private static HashMap<String, Set<String>> initializeServerData(){
-		HashMap<String, Set<String>> map = new HashMap<>();
+	private static Hashtable<String, Set<String>> initializeServerData(){
+		Hashtable<String, Set<String>> map = new Hashtable<>();
 		
 		for(int i = 1 ; i <= 3 ; i++){
 			Set<String> set = new HashSet<>();

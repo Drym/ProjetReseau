@@ -1,7 +1,7 @@
 package protocol.services;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 
 import protocol.InvalidRequestException;
@@ -71,7 +71,7 @@ public class MettreAJour extends Service {
 	}
 
 	@Override
-	public HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map)
+	public Hashtable<String, Set<String>> exec(Hashtable<String, Set<String>> map)
 			throws InvalidRequestException {
 		if(newName == null || newName.equals("")) throw new InvalidRequestException("Veuillez entrer un nouveau nom non nul.");
 		
@@ -112,7 +112,7 @@ public class MettreAJour extends Service {
 
 	@Override
 	public Response createResponse(boolean status, String message,
-			HashMap<String, Set<String>> map) {
+			Hashtable<String, Set<String>> map) {
 		return new Response(status, message);
 	}
 }

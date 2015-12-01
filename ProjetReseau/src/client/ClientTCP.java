@@ -86,7 +86,7 @@ public class ClientTCP {
 					if (response.getStatus()) {
 						System.out.println("Msg:Affichage d'une partie des données reçues:");
 
-						HashMap<String, Set<String>> map = response.getData();
+						Hashtable<String, Set<String>> map = response.getData();
 
 						for (String string : response.getData().keySet()) {
 							List<String> list = new ArrayList<>( map.get(string));

@@ -57,7 +57,7 @@ public class ClientUDP {
 			if (response.getStatus()) {
 				System.out.println("Msg:Affichage d'une partie des données reçues:");
 
-				HashMap<String, Set<String>> map = response.getData();
+				Hashtable<String, Set<String>> map = response.getData();
 
 				// Affichage de la map
 				for (String string : response.getData().keySet()) {
@@ -139,7 +139,7 @@ public class ClientUDP {
 			if (response.getStatus()) {
 				System.out.println("Msg:Affichage d'une partie des données reçues:");
 
-				HashMap<String, Set<String>> map = response.getData();
+				Hashtable<String, Set<String>> map = response.getData();
 
 				// Affichage de la map
 				for (String string : response.getData().keySet()) {

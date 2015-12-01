@@ -12,6 +12,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 
 import protocol.InvalidRequestException;
@@ -21,7 +22,7 @@ import protocol.services.Service;
 public class ServerUDP {
 
 	public static void main(String[] args) {
-		HashMap<String, Set<String>> serverData = initializeServerData();
+		Hashtable<String, Set<String>> serverData = initializeServerData();
 		
 		DatagramSocket serverSocket;
 		DatagramPacket incomingPacket;
@@ -108,8 +109,8 @@ public class ServerUDP {
 		}
 	}
 	
-	private static HashMap<String, Set<String>> initializeServerData(){
-		HashMap<String, Set<String>> map = new HashMap<>();
+	private static Hashtable<String, Set<String>> initializeServerData(){
+		Hashtable<String, Set<String>> map = new Hashtable<>();
 		
 		for(int i = 1 ; i <= 3 ; i++){
 			Set<String> set = new HashSet<>();

@@ -1,7 +1,7 @@
 package protocol.services;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 
 import protocol.InvalidRequestException;
@@ -33,7 +33,7 @@ public class Ajouter extends Service {
 	}
 
 	@Override
-	public HashMap<String, Set<String>> exec(HashMap<String, Set<String>> map) throws InvalidRequestException {
+	public Hashtable<String, Set<String>> exec(Hashtable<String, Set<String>> map) throws InvalidRequestException {
 		if(name == null || name.equals("")) throw new InvalidRequestException("Veuillez entrer un nom à ajouter non nul.");
 		
 		if(map.containsKey(name)) throw new InvalidRequestException(
@@ -53,7 +53,7 @@ public class Ajouter extends Service {
 	}
 
 	@Override
-	public Response createResponse(boolean status, String message, HashMap<String, Set<String>> map) {
+	public Response createResponse(boolean status, String message, Hashtable<String, Set<String>> map) {
 		return new Response(status, message);
 	}
 }

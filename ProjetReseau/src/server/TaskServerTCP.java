@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Set;
 
 import protocol.InvalidRequestException;
@@ -17,9 +18,9 @@ import protocol.services.Service;
 public class TaskServerTCP implements Runnable {
 
 	private Socket clientSocket;
-	private HashMap<String, Set<String>> serverData;
+	private Hashtable<String, Set<String>> serverData;
 	
-	public TaskServerTCP(Socket clientSocket, HashMap<String, Set<String>> serverData) {
+	public TaskServerTCP(Socket clientSocket, Hashtable<String, Set<String>> serverData) {
 		this.clientSocket = clientSocket;
 		this.serverData = serverData;
 	}

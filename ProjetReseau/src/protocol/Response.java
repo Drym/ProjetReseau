@@ -2,6 +2,7 @@ package protocol;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Set;
 
 /**
@@ -15,7 +16,7 @@ public class Response implements Serializable{
 	private static final long serialVersionUID = -1375764047129249512L;
 	
 	private boolean status;
-	private HashMap<String, Set<String>> data;
+	private Hashtable<String, Set<String>> data;
 	private String message;
 
 	/**
@@ -31,7 +32,7 @@ public class Response implements Serializable{
 	public Response(boolean status, String message) {
 		this.status = status;
 		this.message = message;
-		data = new HashMap<>();
+		data = new Hashtable<>();
 	}
 
 	/**
@@ -46,7 +47,7 @@ public class Response implements Serializable{
 	 * @param data
 	 * 				Les données résultantes de l'éxécution de la requête
 	 */
-	public Response(boolean status, String message, HashMap<String, Set<String>> data) {
+	public Response(boolean status, String message, Hashtable<String, Set<String>> data) {
 		this(status, message);
 		this.data = data;
 	}
@@ -65,7 +66,7 @@ public class Response implements Serializable{
 	 *
 	 * @return une HashMap contenant les données
 	 */
-	public HashMap<String, Set<String>> getData(){
+	public Hashtable<String, Set<String>> getData(){
 		return data;
 	}
 
