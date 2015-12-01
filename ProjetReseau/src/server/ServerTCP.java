@@ -26,9 +26,16 @@ public class ServerTCP {
 		try {
 
 			serverSocket = new ServerSocket(1337);
-			clientSocket = serverSocket.accept();
-
-			System.out.println("Msg:Serveur en ligne.");
+			
+			
+			System.out.println("Msg:Serveur lancé.");
+			for(int i = 1 ;; i++){
+				clientSocket = serverSocket.accept();
+				System.out.println("Msg:Tâche"+i+" lancée.");
+				new Thread(new TaskServerTCP(clientSocket, serverData)).start();
+			}
+			
+			/*System.out.println("Msg:Serveur en ligne.");
 			ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
 			ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			Service request = null;
