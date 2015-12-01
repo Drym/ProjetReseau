@@ -8,10 +8,7 @@ import java.net.Socket;
 import java.util.*;
 
 import protocol.Response;
-import protocol.services.Ajouter;
-import protocol.services.Lister;
-import protocol.services.MettreAJour;
-import protocol.services.Supprimer;
+import protocol.services.*;
 
 public class ClientUDP {
 
@@ -37,14 +34,13 @@ public class ClientUDP {
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(outputStream);
 			
-			//Envois de la quete
+			//Envois de la quete 1
 			oos.writeObject(new Lister());
 			byte[] data = outputStream.toByteArray();
-			
+
 			System.out.println("Msg:Envoi d'une requête LIST au serveur.");
 			sendPacket = new DatagramPacket(data, data.length, IPAddress, portNumber);
 			socket.send(sendPacket);
-			//oos.flush();
 
 			//Réception
 			byte[] incomingData = new byte[1024];
@@ -77,10 +73,93 @@ public class ClientUDP {
 			} else {
 				System.out.println(response.getMessage());
 			}
-			
-			
-			
-			
+
+			socket.close();
+			oos.close();
+			ois.close();
+			socket = new DatagramSocket();
+
+			outputStream = new ByteArrayOutputStream();
+			oos = new ObjectOutputStream(outputStream);
+
+			//Envois de la quete 2
+			oos.writeObject(new Supprimer("Name1"));
+			data = outputStream.toByteArray();
+
+			System.out.println("Msg:Envoi d'une suppression de l'utilisateur Name1 au serveur.");
+			sendPacket = new DatagramPacket(data, data.length, IPAddress, portNumber);
+			socket.send(sendPacket);
+
+			//Réception
+			incomingData = new byte[1024];
+			incomingPacket = new DatagramPacket(incomingData, incomingData.length);
+			socket.receive(incomingPacket);
+			incData = incomingPacket.getData();
+			in = new ByteArrayInputStream(incData);
+			ois = new ObjectInputStream(in);
+
+			//Reponse
+			response = (Response) ois.readObject();
+			System.out.println("Msg:Réception d'une réponse du serveur.");
+
+			if (response.getStatus()) {
+				System.out.println("Msg:Utilisateur Name1 supprimé.");
+			} else {
+				System.out.println(response.getMessage());
+			}
+
+			socket.close();
+			oos.close();
+			ois.close();
+
+			socket = new DatagramSocket();
+			outputStream = new ByteArrayOutputStream();
+			oos = new ObjectOutputStream(outputStream);
+
+			//Envois de la quete 3
+			oos.writeObject(new Lister());
+			data = outputStream.toByteArray();
+
+			System.out.println("Msg:Envoi d'une requête LIST au serveur.");
+			sendPacket = new DatagramPacket(data, data.length, IPAddress, portNumber);
+			socket.send(sendPacket);
+
+			//Réception
+			incomingData = new byte[1024];
+			incomingPacket = new DatagramPacket(incomingData, incomingData.length);
+			socket.receive(incomingPacket);
+			incData = incomingPacket.getData();
+			in = new ByteArrayInputStream(incData);
+			ois = new ObjectInputStream(in);
+
+			//Reponse
+			response = (Response) ois.readObject();
+			System.out.println("Msg:Réception d'une réponse du serveur.");
+
+			if (response.getStatus()) {
+				System.out.println("Msg:Affichage d'une partie des données reçues:");
+
+				HashMap<String, Set<String>> map = response.getData();
+
+				// Affichage de la map
+				for (String string : response.getData().keySet()) {
+					List<String> list = new ArrayList<>( map.get(string));
+					System.out.print("	" + string + " - ");
+
+					for(int i = 0; i < list.size(); i++) {
+						System.out.print(list.get(i) + "  ");
+					}
+					System.out.println("");
+				}
+
+			} else {
+				System.out.println(response.getMessage());
+			}
+
+			oos.close();
+			ois.close();
+			socket.close();
+
 /*
 			//Socket socket = new Socket(hostName, portNumber);
 			System.out.println("Msg:Demande de connexion au serveur.");
