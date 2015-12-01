@@ -44,10 +44,6 @@ public class TaskServerTCP implements Runnable {
 					response = request.createResponse(true, "OK", serverData);
 					
 				} catch(EOFException eof){
-					/*clientSocket = serverSocket.accept();
-					ois = new ObjectInputStream(clientSocket.getInputStream());
-					oos = new ObjectOutputStream(clientSocket.getOutputStream());
-					continue;*/
 					return;
 					
 				} catch (InvalidRequestException e) {
@@ -61,12 +57,6 @@ public class TaskServerTCP implements Runnable {
 				} catch(ClassNotFoundException cnfe){
 					response = new Response(false, "Classe non trouvée.");					
 				} catch (IOException ioe) {
-					/*System.out.println("Déconnexion inattendue du client !");
-					i = 1;
-					clientSocket = serverSocket.accept();
-					ois = new ObjectInputStream(clientSocket.getInputStream());
-					oos = new ObjectOutputStream(clientSocket.getOutputStream());
-					continue;*/
 					return;
 				}
 
@@ -75,13 +65,6 @@ public class TaskServerTCP implements Runnable {
 				System.out.println("Msg n°" + i + " :Envoi d'une réponse au client.");
 				oos.flush();
 			}
-
-			/*ois.close();
-			oos.close();
-			serverSocket.close();
-			clientSocket.close();
-			
-			System.out.println("Msg:Serveur stoppé.");*/
 
 		} catch (IOException e) {
 			e.printStackTrace();
