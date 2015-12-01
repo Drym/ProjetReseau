@@ -22,6 +22,7 @@ import protocol.services.Service;
 public class ServerUDP {
 
 	public static void main(String[] args) {
+		// Structure de données Thread-safe contenant les noms et les surnoms associés
 		Hashtable<String, Set<String>> serverData = initializeServerData();
 		
 		DatagramSocket serverSocket;
@@ -31,25 +32,35 @@ public class ServerUDP {
 		
 		try {
 
+			// Création de la socket pour UDP
 			serverSocket = new DatagramSocket(1337);
+			// Structure de données permettant de contenir les données du paquet
 			byte[] incomingData = new byte[1024];
 
 			ByteArrayInputStream in;
 			ObjectInputStream ois;
 			Service request = null;
 
+			// Boucle infinie permettant de gérer les requêtes client
 			for(int i = 1 ;; i++){
 				
+				// Création du paquet qui recevra le paquet du client
 				incomingPacket = new DatagramPacket(incomingData, incomingData.length);
+				// Attente de la réception d'un paquet
 				serverSocket.receive(incomingPacket);
+				// Récupération des données contenues dans le paquet
 				byte[] incData = incomingPacket.getData();
+				
+				// Ouverture des flux d'entrée - sortie
 				in = new ByteArrayInputStream(incData);
 				ois = new ObjectInputStream(in);
 								
 				Response response = null;
 				try{
+					// Récupération de la requête client sur le flux en entrée
 					request = (Service)ois.readObject();
 					System.out.println("Msg n°"+i+" :Réception d'un objet envoyé par le client.");
+					// Exécution de la requête client
 					serverData = request.exec(serverData);
 					response = request.createResponse(true, "OK", serverData);
 					
@@ -109,6 +120,7 @@ public class ServerUDP {
 		}
 	}
 	
+	// Initialise la structure de données avec des données par défaut
 	private static Hashtable<String, Set<String>> initializeServerData(){
 		Hashtable<String, Set<String>> map = new Hashtable<>();
 		

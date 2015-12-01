@@ -18,7 +18,9 @@ import protocol.services.Disconnect;
 public class ClientTCP {
 
 	public static void main(String[] args) {
+		// Nom de l'hôte
 		String hostName = "localhost";
+		// Numéro de port
 		int portNumber = 1337;
 		ObjectInputStream ois;
 		ObjectOutputStream oos;
@@ -29,13 +31,14 @@ public class ClientTCP {
 		Scanner scanner = new Scanner(System.in);
 
 		try {
-			//Connexion
+			// Création de la socket de connexion au serveur
 			Socket socket = new Socket(hostName, portNumber);
 			System.out.println("Msg:Demande de connexion au serveur.");
+			// Ouverture des flux sur la socket permettant de transférer des objet sérialisés
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			
-			//Boucle tant que l'utilisateur veut continuer
+			//Boucle tant que l'utilisateur veut continuer à entrer des commandes
 			while (continuer) {
 				System.out.println("Que voulez-vous faire ?");
 				read = scanner.nextLine();
@@ -57,14 +60,16 @@ public class ClientTCP {
 							nicknames.add(read);
 					}
 
-					//Envois de la requete
+					// Ecriture de l'objet correspondant au service désiré sur le flux sortant
 					oos.writeObject(new Ajouter(nom, nicknames));
 					System.out.println("Msg:Envoi d'un ajout de l'utilisateur " + nom + " au serveur.");
 					oos.flush();
 
-					//Reponse
+					// Récupération de la réponse du serveur via l'objet Response (lecture sur le flux entrant)
 					Response response = (Response) ois.readObject();
 					System.out.println("Msg:Réception d'une réponse du serveur.");
+					// Si le statut de la réponse est vrai, l'action souhaîtée du client est effectuée,
+					// sinon le message d'erreur de la réponse est affichée
 					if (response.getStatus()) {
 						System.out.println("Msg:Utilisateur " + nom + " ajouté.");
 					} else {
