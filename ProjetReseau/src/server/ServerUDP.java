@@ -47,7 +47,7 @@ public class ServerUDP {
 								
 				Response response = null;
 				try{
-					request = (Service)ois.readObject();				
+					request = (Service)ois.readObject();
 					System.out.println("Msg n°"+i+" :Réception d'un objet envoyé par le client.");
 					serverData = request.exec(serverData);
 					response = request.createResponse(true, "OK", serverData);
@@ -102,13 +102,6 @@ public class ServerUDP {
 
 				System.out.println("Msg n°" + i + " :Envoi d'une réponse au client.");
 			}
-
-			/*ois.close();
-			oos.close();
-			serverSocket.close();
-			clientSocket.close();
-			
-			System.out.println("Msg:Serveur stoppé.");*/
 
 		} catch (IOException e) {
 			e.printStackTrace();

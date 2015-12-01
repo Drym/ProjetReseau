@@ -202,7 +202,7 @@ public class ClientTCP {
 				}
 
 				//Fermeture ou non de la connexion
-				else if(read.equals("Disconnect") || read.equals("disconnect")) {
+				else if(read.equals("disconnect")) {
 					oos.close();
 					ois.close();
 					socket.close();
