@@ -1,9 +1,5 @@
 package protocol.services;
 
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Set;
-
 import protocol.InvalidRequestException;
 import protocol.Response;
 
@@ -29,17 +25,12 @@ public class Supprimer extends Service {
     }
 
     @Override
-    public Hashtable<String, Set<String>> exec(Hashtable<String, Set<String>> map) throws InvalidRequestException {
-        if(!map.containsKey(name)) throw new InvalidRequestException(
+    public Response exec() throws InvalidRequestException {
+        if(!serverData.containsKey(name)) throw new InvalidRequestException(
                 "Le nom "+name+" n'a pas pu être supprimé car il n'est pas présent sur le serveur.");
 
-        map.remove(name);
+        serverData.remove(name);
 
-        return map;
-    }
-
-    @Override
-    public Response createResponse(boolean status, String message, Hashtable<String, Set<String>> map) {
-        return new Response(status, message);
+        return new Response(true, "Utilisateur supprimé");
     }
 }

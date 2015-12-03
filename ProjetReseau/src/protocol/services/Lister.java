@@ -13,7 +13,6 @@ import protocol.Response;
 public class Lister extends Service {
 	private static final long serialVersionUID = 3350070951937150357L;
 
-	private int limit;
 	private String startWith;
 
 	/**
@@ -23,7 +22,6 @@ public class Lister extends Service {
 	 */
 	public Lister() {
 		super("LIST");
-		limit = 0;
 		startWith = "";
 	}
 
@@ -32,30 +30,25 @@ public class Lister extends Service {
 	 *
 	 * Permet l'obtention de la liste des noms et surnoms
 	 *
-	 * @param limit
-	 *            Permet de limiter le nombre de ligne retourner
 	 * @param startWith
 	 *            Permet de lister uniquement tous les noms qui commencent par
 	 *            startWith
 	 */
-	public Lister(int limit, String startWith) {
+	public Lister(String startWith) {
 		super("LIST");
-		this.limit = limit;
-		this.startWith = startWith;
+		if(startWith != null)
+			this.startWith = startWith;
 	}
 
 	@Override
-	public Hashtable<String, Set<String>> exec(Hashtable<String, Set<String>> map)
-			throws InvalidRequestException {
-		// Pas de modification des données du serveur
-		return map;
-	}
+	public Response exec() throws InvalidRequestException {
+		Hashtable<String, Set<String>> mapRes = new Hashtable<>();
 
-	@Override
-	public Response createResponse(boolean status, String message,
-			Hashtable<String, Set<String>> map) {
-		// TODO : Pour l'instant limit et startWith sont ignorés
-		return new Response(status, message, map);
-	}
+		for (String name : serverData.keySet()) {
+			if (name.startsWith(startWith))
+				mapRes.put(name, serverData.get(name));
+		}
 
+		return new Response(true, "Liste reçue", mapRes);
+	}
 }

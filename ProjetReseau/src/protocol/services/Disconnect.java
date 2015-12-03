@@ -1,9 +1,5 @@
 package protocol.services;
 
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Set;
-
 import protocol.InvalidRequestException;
 import protocol.Response;
 
@@ -24,12 +20,7 @@ public class Disconnect extends Service {
 
 
     @Override
-    public Hashtable<String, Set<String>> exec(Hashtable<String, Set<String>> map) throws InvalidRequestException {
-        return map;
-    }
-
-    @Override
-    public Response createResponse(boolean status, String message, Hashtable<String, Set<String>> map) {
-        return new Response(status, message);
+    public Response exec() throws InvalidRequestException {
+        return new Response(true, "Déconnexion réussie");
     }
 }

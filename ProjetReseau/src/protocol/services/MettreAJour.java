@@ -1,7 +1,5 @@
 package protocol.services;
 
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Set;
 
 import protocol.InvalidRequestException;
@@ -71,11 +69,10 @@ public class MettreAJour extends Service {
 	}
 
 	@Override
-	public Hashtable<String, Set<String>> exec(Hashtable<String, Set<String>> map)
-			throws InvalidRequestException {
+	public Response exec() throws InvalidRequestException {
 		if(newName == null || newName.equals("")) throw new InvalidRequestException("Veuillez entrer un nouveau nom non nul.");
 		
-		if (!map.containsKey(name))
+		if (!serverData.containsKey(name))
 			throw new InvalidRequestException(
 					"Le nom "
 							+ name
@@ -83,9 +80,9 @@ public class MettreAJour extends Service {
 
 		// Pas de nicknames, donc modification du nom
 		if (nicknames == null) {
-			nicknames = map.get(name);
-			map.remove(name);
-			map.put(newName, nicknames);
+			nicknames = serverData.get(name);
+			serverData.remove(name);
+			serverData.put(newName, nicknames);
 		}
 		// Les deux ou juste les surnoms
 		else {
@@ -93,8 +90,8 @@ public class MettreAJour extends Service {
 			
 			if(nicknames.contains("")) throw new InvalidRequestException("Veuiller entrer des surnoms non vides.");
 			
-			for (String key : map.keySet()) {
-				Set<String> tmp = map.get(key);
+			for (String key : serverData.keySet()) {
+				Set<String> tmp = serverData.get(key);
 				if(!key.equals(name)){
 					for (String nname : tmp) {
 						if(nicknames.contains(nname)) throw new InvalidRequestException(
@@ -103,16 +100,10 @@ public class MettreAJour extends Service {
 				}
 			}
 			
-			map.remove(name);
-			map.put(newName, nicknames);
+			serverData.remove(name);
+			serverData.put(newName, nicknames);
 		}
 
-		return map;
-	}
-
-	@Override
-	public Response createResponse(boolean status, String message,
-			Hashtable<String, Set<String>> map) {
-		return new Response(status, message);
+		return new Response(true, "Utilisateur modifié");
 	}
 }

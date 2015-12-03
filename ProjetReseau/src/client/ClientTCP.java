@@ -3,9 +3,7 @@ package client;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintStream;
 import java.net.Socket;
-import java.util.HashMap;
 import java.util.*;
 
 import protocol.Response;
@@ -80,8 +78,11 @@ public class ClientTCP {
 				//Requete Lister
 				else if (read.equals("lister")) {
 
+					System.out.println("Entrez le début du nom à rechercher, laisser vide pour récupérer toute la liste, puis appuyez sur Entrée : ");
+					read = scanner.nextLine();
+					
 					//Envois de la quete
-					oos.writeObject(new Lister());
+					oos.writeObject(new Lister(read));
 					System.out.println("Msg:Envoi d'une requête LIST au serveur.");
 					oos.flush();
 

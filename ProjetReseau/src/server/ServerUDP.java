@@ -10,21 +10,13 @@ import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Set;
-
 import protocol.InvalidRequestException;
 import protocol.Response;
 import protocol.services.Service;
 
 public class ServerUDP {
 
-	public static void main(String[] args) {
-		// Structure de données Thread-safe contenant les noms et les surnoms associés
-		Hashtable<String, Set<String>> serverData = initializeServerData();
-		
+	public static void main(String[] args) {		
 		DatagramSocket serverSocket;
 		DatagramPacket incomingPacket;
 		
@@ -60,9 +52,8 @@ public class ServerUDP {
 					// Récupération de la requête client sur le flux en entrée
 					request = (Service)ois.readObject();
 					System.out.println("Msg n°"+i+" :Réception d'un objet envoyé par le client.");
-					// Exécution de la requête client
-					serverData = request.exec(serverData);
-					response = request.createResponse(true, "OK", serverData);
+					// Exécution de la requête client et création de la réponse
+					response = request.exec();
 					
 				} catch(EOFException eof){
 					incomingPacket = new DatagramPacket(incomingData, incomingData.length);
@@ -75,7 +66,7 @@ public class ServerUDP {
 				// Gestion des requêtes invalides
 				} catch (InvalidRequestException e) {
 					String message = request.getServiceName() + " : " + e.getMessageError();
-					response = request.createResponse(false, message, null);
+					response = new Response(false, message, null);
 					
 				// Gestion lorsqu'un objet de type autre que Service est reçu
 				} catch(ClassCastException cce) {
@@ -119,20 +110,4 @@ public class ServerUDP {
 			e.printStackTrace();
 		}
 	}
-	
-	// Initialise la structure de données avec des données par défaut
-	private static Hashtable<String, Set<String>> initializeServerData(){
-		Hashtable<String, Set<String>> map = new Hashtable<>();
-		
-		for(int i = 1 ; i <= 3 ; i++){
-			Set<String> set = new HashSet<>();
-			set.add("Surname"+i+".1");
-			set.add("Surname"+i+".2");
-			set.add("Surname"+i+".3");
-			map.put("Name"+i, set);
-		}
-		
-		return map;
-	}
-
 }

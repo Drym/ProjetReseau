@@ -5,12 +5,7 @@ import java.io.IOException;
 import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Set;
-
 import protocol.InvalidRequestException;
 import protocol.Response;
 import protocol.services.Service;
@@ -18,11 +13,9 @@ import protocol.services.Service;
 public class TaskServerTCP implements Runnable {
 
 	private Socket clientSocket;
-	private Hashtable<String, Set<String>> serverData;
 	
-	public TaskServerTCP(Socket clientSocket, Hashtable<String, Set<String>> serverData) {
+	public TaskServerTCP(Socket clientSocket) {
 		this.clientSocket = clientSocket;
-		this.serverData = serverData;
 	}
 
 	@Override
@@ -42,10 +35,8 @@ public class TaskServerTCP implements Runnable {
 					// Récupération de la requête client sur le flux en entrée
 					request = (Service)ois.readObject();				
 					System.out.println("Msg n°"+i+" :Réception d'un objet envoyé par le client.");
-					// Exécution de la requête client
-					serverData = request.exec(serverData);
-					// Création d'un réponse à envoyer au client
-					response = request.createResponse(true, "OK", serverData);
+					// Exécution de la requête client et création de la réponse
+					response = request.exec();
 					
 				} catch(EOFException eof){
 					return;
@@ -54,7 +45,7 @@ public class TaskServerTCP implements Runnable {
 					// Gestion des erreurs sur l'utilisation d'un requête (ajout d'un nom vide par exemple)
 					// Une réponse avec le message d'erreur est créée
 					String message = request.getServiceName() + " : " + e.getMessageError();
-					response = request.createResponse(false, message, null);
+					response = new Response(false, message, null);
 					
 				} catch(ClassCastException cce) {
 					// Cas où l'objet envoyé par le client n'appartient pas au protocole d'application

@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import java.util.Set;
 
 public class ServiceImpl extends UnicastRemoteObject {
+	private static final long serialVersionUID = 8997018075376567935L;
 	protected static Hashtable<String, Set<String>> data = initializeServerData();
 	
 	protected ServiceImpl() throws RemoteException {

@@ -1,7 +1,6 @@
 package protocol;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Set;
 

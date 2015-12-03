@@ -4,6 +4,7 @@ package protocol;
  * InvalidRequestException est une classe permetant de gérer les exceptions (côté serveur).
  */
 public class InvalidRequestException extends Exception {
+	private static final long serialVersionUID = 6648124959414519238L;
 	private String messageError;
 
 	/**
