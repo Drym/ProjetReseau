@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Set;
 
@@ -18,13 +19,14 @@ import protocol.services.Service;
 public class TaskServerTCP implements Runnable {
 
 	private Socket clientSocket;
-	private Hashtable<String, Set<String>> serverData;
+	// Structure de données Thread-safe contenant les noms et les surnoms associés
+	private Hashtable<String, Set<String>> serverData = initializeServerData();
 	
-	public TaskServerTCP(Socket clientSocket, Hashtable<String, Set<String>> serverData) {
+	public TaskServerTCP(Socket clientSocket) {
 		this.clientSocket = clientSocket;
-		this.serverData = serverData;
 	}
-	
+
+
 	@Override
 	public void run() {
 		try {
@@ -83,4 +85,18 @@ public class TaskServerTCP implements Runnable {
 		}
 	}
 
+	// Initialise la structure de données avec des données par défaut
+	private static Hashtable<String, Set<String>> initializeServerData(){
+		Hashtable<String, Set<String>> map = new Hashtable<>();
+
+		for(int i = 1 ; i <= 3 ; i++){
+			Set<String> set = new HashSet<>();
+			set.add("Surname"+i+".1");
+			set.add("Surname"+i+".2");
+			set.add("Surname"+i+".3");
+			map.put("Name"+i, set);
+		}
+
+		return map;
+	}
 }
